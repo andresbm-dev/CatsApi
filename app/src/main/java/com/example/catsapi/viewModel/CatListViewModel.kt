@@ -4,17 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.catsapi.Domain.GetFavoritesRoomUseCase
 import com.example.catsapi.model.CatListApiItem
 import com.example.catsapi.repository.CatListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import okhttp3.internal.toImmutableList
 
 import javax.inject.Inject
 
 @HiltViewModel
 class CatListViewModel
-    @Inject constructor (private val repository : CatListRepository): ViewModel() {
+    @Inject constructor (private val repository : CatListRepository,
+    private val getFavoritesRoomUseCase: GetFavoritesRoomUseCase): ViewModel() {
 
     private val catListMLD = MutableLiveData<List<CatListApiItem>>()
     val catListLD: LiveData<List<CatListApiItem>> get() = catListMLD
@@ -30,7 +31,10 @@ class CatListViewModel
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = repository.getallCat(page)
+
             if (result.isNotEmpty()) {
+                getFavoritesRoomUseCase.getFavorite(result)
+
                 catListMLD.postValue(result)
                 catMutable.addAll(result)
                 catMutablelistLD_.postValue(catMutable)
@@ -42,6 +46,7 @@ class CatListViewModel
         }
         return catListMLD
     }
+
 
     fun toggleFavorite(cat: CatListApiItem) {
         val catIndex = catMutable.indexOf(cat)
@@ -56,14 +61,7 @@ class CatListViewModel
         }
     }
 
-    fun getCatListRoom() {
-        viewModelScope.launch {
-            catMutable.addAll(repository.getAllFavorite())
-            catListMLD.postValue(catMutable)
-            catMutablelistLD_.postValue(catMutable)
 
-        }
-    }
 }
 
 

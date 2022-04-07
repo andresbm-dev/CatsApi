@@ -43,7 +43,7 @@ class CatHolder
             ContextCompat.startActivities(view.context, arrayOf(intent), Bundle.EMPTY)
         }
 
-        //catListViewModel.getCatListRoom()
+
         if (catlist.isFavorite) {
             //se pinta el corazon lleno rojo
             setupFavorite()

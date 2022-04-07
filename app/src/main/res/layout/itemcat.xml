@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="#1A266A"
+        android:background="#00FEFEFF"
         >
 
         <TextView
@@ -25,8 +25,11 @@
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="60dp"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-light"
+
+            android:textSize="24sp"
+            />
 
         <ImageButton
             android:id="@+id/ibToggleFav"
@@ -45,7 +48,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="@color/teal_700"
+            android:background="#D9F4F4"
             android:layout_marginStart="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvNameCat"

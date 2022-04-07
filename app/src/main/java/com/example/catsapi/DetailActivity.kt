@@ -26,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
         /*val info = findViewById<TextView>(R.id.tvdescription)
         url_ = findViewById(R.id.tvurl)
         val name_ = findViewById<TextView>(R.id.tvname)*/
-        val photo_ = findViewById<ImageView>(R.id.ivphoto)
+        val photo_ = binding.ivphoto
 
         binding.tvdescription.text = informacion
         binding.tvurl.text = url
@@ -44,5 +44,7 @@ class DetailActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+
     }
 }
