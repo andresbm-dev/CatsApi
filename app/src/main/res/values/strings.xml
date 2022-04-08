@@ -2,4 +2,11 @@
     <string name="app_name">CatsApi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contenido_info">Esta es una aplicación desarrollada con el lenguaje
+        de programación Kotlin, utilizando la Arquitectura MVVM con LiveData y dataBinding.
+         La aplicación consume Recursos de la Api de theCat, la cual obtiene un listado de gatos
+        con sus nombres, razas, imagenes, descripciones, etc. El usuario puede agregar o elegir
+        sus gatos favoritos, esto se logra desarrollar utilizando el ORM de Room el cual permite tener
+        un almacenamiento interno de base de datos.
+    </string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catsapi.model.CatListApiItem
@@ -55,6 +56,10 @@ class CatHolder
         btnFav_.setOnClickListener {
             catListViewModel.toggleFavorite(cat = catlist)
             catListViewModel.insertAllFavorite(catlist)
+            if(catlist.isFavorite == true)
+                Toast.makeText(view.context, "Has añadido la raza de gato ${catlist.name} a favorito ", Toast.LENGTH_SHORT).show()
+            else
+                Toast.makeText(view.context, "Has eliminado la raza de gato ${catlist.name} a favorito ", Toast.LENGTH_SHORT).show()
         }
 
     }

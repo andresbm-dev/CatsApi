@@ -1,28 +1,25 @@
 package com.example.catsapi.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.catsapi.viewFavorite.FavoriteActivity
+import com.example.catsapi.InfoActivity
 import com.example.catsapi.adapter.CatAdapter
 import com.example.catsapi.viewModel.CatListViewModel
 import com.example.catsapi.R
 import com.example.catsapi.databinding.ActivityMainBinding
 
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.cache2.Relay.Companion.edit
 import okhttp3.internal.toImmutableList
-import java.nio.file.Files.delete
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -55,11 +52,14 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.favoritos -> {
                 Toast.makeText(this, "mis Favoritos", Toast.LENGTH_SHORT).show()
-                //loadFragment(favoriteFragment)
+                val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.info -> {
                 Toast.makeText(this, "info", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@MainActivity, InfoActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     fun initReciclerView() {
         val rv = binding.rvlist
 
-        rv.layoutManager = LinearLayoutManager(this@MainActivity)
+       rv.layoutManager = LinearLayoutManager(this@MainActivity)
 
         catViewModel.catListLD.observe(this) { listcat ->
             if (listcat != null)

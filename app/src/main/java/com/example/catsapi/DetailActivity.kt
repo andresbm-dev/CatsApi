@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import com.example.catsapi.databinding.ActivityDetailBinding
 import com.squareup.picasso.Picasso
 import java.net.URI
@@ -22,6 +23,7 @@ class DetailActivity : AppCompatActivity() {
         val url = intent.getStringExtra("URL")
         val name = intent.getStringExtra("NAME")
         val photo = intent.getStringExtra("PHOTO")
+        Toast.makeText(this@DetailActivity, "Detalles de la raza de gato $name", Toast.LENGTH_SHORT).show()
 
         /*val info = findViewById<TextView>(R.id.tvdescription)
         url_ = findViewById(R.id.tvurl)

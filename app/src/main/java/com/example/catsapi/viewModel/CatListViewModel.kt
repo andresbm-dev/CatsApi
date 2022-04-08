@@ -26,6 +26,9 @@ class CatListViewModel
     private var catMutablelistLD_ = MutableLiveData<MutableList<CatListApiItem>>()
     val catMListLD: LiveData<MutableList<CatListApiItem>> get() = catMutablelistLD_
 
+    private var favlistLD_ = MutableLiveData<List<CatListApiItem>>()
+    val favMListLD: LiveData<List<CatListApiItem>> get() = favlistLD_
+
     fun getCatListApi(page: Int): MutableLiveData<List<CatListApiItem>> {
 
         viewModelScope.launch {
@@ -58,6 +61,12 @@ class CatListViewModel
     fun insertAllFavorite(cat: CatListApiItem) {
         viewModelScope.launch {
             repository.insertAllFavorite(cat)
+        }
+    }
+
+    fun getFavorite(){
+        viewModelScope.launch {
+            favlistLD_.postValue(repository.getAllFavorite())
         }
     }
 
